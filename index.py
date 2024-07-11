@@ -1,12 +1,13 @@
 import discord
 from discord.ext import commands
+import os
 
-# Remplacez 'your-token-here' par le token de votre bot
-TOKEN = 'MTI2MDYzMjQ4MjU0NjQ1MDQ1Mg.GCvGQc.6--3GRDniR3yulkKaWeW1gxoVVGDP7y3WNYLeA'
+# Utilise le token du bot depuis les variables d'environnement
+TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 
 # Intents
 intents = discord.Intents.default()
-intents.messages = True
+intents.message_content = True  # Assurez-vous que ceci est correctement configuré
 
 # Initialisation du bot
 bot = commands.Bot(command_prefix='-', intents=intents)
@@ -17,6 +18,8 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
+    print(f"Received message: {message.content} from {message.author}")
+    
     # Ignore les messages envoyés par le bot lui-même
     if message.author == bot.user:
         return
