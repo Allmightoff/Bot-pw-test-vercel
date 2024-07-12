@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
+import os
 
-TOKEN = 'YOUR_DISCORD_BOT_TOKEN'
+TOKEN = os.getenv('DISCORD_TOKEN')
 
 intents = discord.Intents.default()
 intents.messages = True
